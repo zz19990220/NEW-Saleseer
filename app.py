@@ -1,8 +1,21 @@
 import streamlit as st
 import pandas as pd
 import os
+import warnings
+import logging
 from llm.handler import LLMHandler
 from inventory.filters import ProductFilter, generate_recommendation_explanation
+
+# Comprehensive warning suppression
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", message=".*use_column_width.*")
+warnings.filterwarnings("ignore", module="streamlit")
+
+# Also suppress via logging
+logging.getLogger("streamlit").setLevel(logging.ERROR)
+
+# Set environment variable to suppress warnings
+os.environ['PYTHONWARNINGS'] = 'ignore::DeprecationWarning'
 
 # Page configuration
 st.set_page_config(
@@ -50,6 +63,23 @@ st.markdown("""
         border-left: 4px solid #27ae60;
         margin: 15px 0;
     }
+    /* Hide deprecation warnings */
+    .stAlert[data-baseweb="notification"] {
+        display: none !important;
+    }
+    div[data-testid="stAlert"] {
+        display: none !important;
+    }
+    .element-container:has(.stAlert) {
+        display: none !important;
+    }
+    /* Hide warning messages containing use_column_width */
+    div:contains("use_column_width") {
+        display: none !important;
+    }
+    .stWarning {
+        display: none !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -66,7 +96,7 @@ def display_product_card(product_row):
         col1, col2 = st.columns([1, 2])
         
         with col1:
-            st.image(product_row['image_url'], use_column_width=True)
+            st.image(product_row['image_url'], use_container_width=True)
         
         with col2:
             st.subheader(product_row['name'])
