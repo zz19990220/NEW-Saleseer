@@ -6,7 +6,7 @@ from inventory.filters import ProductFilter, generate_recommendation_explanation
 
 # Page configuration
 st.set_page_config(
-    page_title="AI Product Recommendations",
+    page_title="Saleseer AI Product Recommendations",
     page_icon="🛍️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -87,7 +87,7 @@ def main():
     init_session_state()
     
     # Header
-    st.title("🛍️ AI Product Recommendations")
+    st.title("🛍️ Saleseer AI Product Recommendations")
     st.markdown("### Find products using natural language!")
     st.markdown("*Try queries like: 'Show me red dresses under $200' or 'I want blue jeans'*")
     

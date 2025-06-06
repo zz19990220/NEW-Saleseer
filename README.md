@@ -1,4 +1,4 @@
-# 🛍️ AI Product Recommendation System
+# 🛍️ Saleseer AI Product Recommendation System
 
 A simple AI-powered product recommendation website built with Python and Streamlit. Users can search for products using natural language queries, and the system uses OpenAI's GPT model to parse the intent and filter products accordingly.
 
